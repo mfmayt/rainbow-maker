@@ -14,13 +14,6 @@ go run rainbow_maker.go -in=[inputFileName] -out=[outputFileName]
 
 ## Example
 
-#### Base Image
-
-![alt text](https://github.com/mfmayt/rainbow-maker/blob/master/logo.png)
-
-#### Option 1
-
-![alt text](https://github.com/mfmayt/rainbow-maker/blob/master/example_1.png)
-
-#### Option 2
-![alt text](https://github.com/mfmayt/rainbow-maker/blob/master/example_2.png)
+Base Image             |  Option 1          | Option 2
+:-------------------------:|:-------------------------:|:-------------------------:
+![](https://github.com/mfmayt/rainbow-maker/blob/master/logo.png)  |  ![](https://github.com/mfmayt/rainbow-maker/blob/master/example_1.png) |  ![](https://github.com/mfmayt/rainbow-maker/blob/master/example_2.png)
