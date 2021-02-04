@@ -6,6 +6,7 @@
 package main
 
 import (
+	"fmt"
 	"image/color"
 	"image/png"
 	"os"
@@ -25,6 +26,15 @@ const (
 	inputFileName  string = "logo.png"
 )
 
+// You can add, remove, update colors from here
+var colors = []color.RGBA{
+	{255, 0, 24, 255},   // red
+	{255, 165, 44, 255}, // orange
+	{255, 255, 65, 255}, // yellow
+	{0, 128, 24, 255},   // green
+	{0, 0, 249, 255},    // blue
+	{134, 0, 125, 255}}  // purple
+
 func main() {
 	// Open file
 	imgFile, _ := os.Open(inputFileName)
@@ -36,28 +46,35 @@ func main() {
 		panic(err)
 	}
 
-	var colors []color.RGBA
-
-	// You can add, remove, update colors from here
-	colors = append(colors,
-		color.RGBA{255, 0, 24, 255},   // red
-		color.RGBA{255, 165, 44, 255}, // orange
-		color.RGBA{255, 255, 65, 255}, // yellow
-		color.RGBA{0, 128, 24, 255},   // green
-		color.RGBA{0, 0, 249, 255},    // blue
-		color.RGBA{134, 0, 125, 255})  // purple
+	str := `Type '1' or '2':
+	'1' if you want to change colors of only non-transparent pixels, 
+	'2' if you want to change colors of only transparent pixels`
+	fmt.Printf(str + "\n")
+	var choice int
+	fmt.Scanf("%d", &choice)
 
 	if cimg, ok := img.(Changeable); ok {
-		for i := topOffset; i < img.Bounds().Max.Y-bottomOffset; i++ {
+		for i := 0; i < img.Bounds().Max.Y; i++ {
 			// Select color according its row index
 			colorOrder := (i * len(colors)) / img.Bounds().Max.Y
 
-			for j := leftOffset; j < img.Bounds().Max.X-rightOffset; j++ {
+			for j := 0; j < img.Bounds().Max.X; j++ {
 				r, g, b, a := img.At(j, i).RGBA()
 
-				// Check is pixel transparent empty
-				if r != 0 || g != 0 || b != 0 || a != 0 {
-					cimg.Set(j, i, colors[colorOrder])
+				switch choice {
+				case 1:
+					// Check is pixel transparent
+					if r != 0 || g != 0 || b != 0 || a != 0 {
+						cimg.Set(j, i, colors[colorOrder])
+					}
+					break
+				case 2:
+					// Check is pixel not transparent or empty
+					// TODO: noise cancel algorithm can be used here
+					if !(r == 0 && g == 0 && b == 0) || a == 0 {
+						cimg.Set(j, i, colors[colorOrder])
+					}
+					break
 				}
 			}
 		}
