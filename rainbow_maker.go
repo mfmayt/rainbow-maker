@@ -18,10 +18,6 @@ type Changeable interface {
 }
 
 const (
-	leftOffset     int    = 10
-	rightOffset    int    = 30
-	topOffset      int    = 30
-	bottomOffset   int    = 30
 	outputFileName string = "rainbow.png"
 	inputFileName  string = "logo.png"
 )
