@@ -17,3 +17,9 @@ go run rainbow_maker.go -in=[inputFileName] -out=[outputFileName]
 Base Image             |  Option 1          | Option 2
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](https://github.com/mfmayt/rainbow-maker/blob/master/logo.png)  |  ![](https://github.com/mfmayt/rainbow-maker/blob/master/example_1.png) |  ![](https://github.com/mfmayt/rainbow-maker/blob/master/example_2.png)
+
+
+##### Note
+This rainbow maker code is the first code that I felt politic while implementing it. This was for people of Bogazici(where I belong), LGBTI+ community and all protestors who want freedom and democrasy
+
+#ArkadaslarimiziIstiyoruz #BogaziciDirenis #LGBTHaklariInsanHaklari
