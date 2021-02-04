@@ -6,6 +6,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"image/color"
 	"image/png"
@@ -17,11 +18,6 @@ type Changeable interface {
 	Set(x, y int, c color.Color)
 }
 
-const (
-	outputFileName string = "rainbow.png"
-	inputFileName  string = "logo.png"
-)
-
 // You can add, remove, update colors from here
 var colors = []color.RGBA{
 	{255, 0, 24, 255},   // red
@@ -32,8 +28,14 @@ var colors = []color.RGBA{
 	{134, 0, 125, 255}}  // purple
 
 func main() {
+
+	inPtr := flag.String("in", "input.png", "a string")
+	outPtr := flag.String("out", "output.png", "a string")
+
+	flag.Parse()
+
 	// Open file
-	imgFile, _ := os.Open(inputFileName)
+	imgFile, _ := os.Open(*inPtr)
 	defer imgFile.Close()
 
 	img, err := png.Decode(imgFile)
@@ -76,7 +78,7 @@ func main() {
 		}
 
 		// Write output to file
-		outFile, err := os.Create(outputFileName)
+		outFile, err := os.Create(*outPtr)
 		defer outFile.Close()
 
 		if err != nil {
